@@ -253,8 +253,11 @@ if __name__ == '__main__':
         print('Model size is:', model_size())
 
         # need a fake variable to write scalar summary
-        tf.scalar_summary('fake', 0)
-        summary = tf.merge_all_summaries()
-        writer = tf.train.SummaryWriter('./tmp', graph=sess.graph)
+        #tf.scalar_summary('fake', 0)
+        tf.summary.scalar('fake', 0)
+        #summary = tf.merge_all_summaries()
+        summary = tf.summary.merge_all()
+        #writer = tf.train.SummaryWriter('./tmp', graph=sess.graph)
+        writer = tf.summary.FileWriter('./tmp', graph=sess.graph)
         writer.add_summary(sess.run(summary))
         writer.flush()

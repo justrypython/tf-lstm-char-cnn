@@ -3,6 +3,8 @@ from __future__ import division
 
 
 import tensorflow as tf
+from data_reader import load_data
+from data_reader import DataReader
 
 
 class adict(dict):
@@ -114,7 +116,7 @@ def inference_graph(char_vocab_size, word_vocab_size,
                     num_highway_layers=2,
                     num_rnn_layers=2,
                     rnn_size=650,
-                    max_word_length=65,
+                    max_word_length=21,
                     kernels         = [ 1,   2,   3,   4,   5,   6,   7],
                     kernel_features = [50, 100, 150, 200, 200, 200, 200],
                     num_unroll_steps=35,
@@ -238,6 +240,15 @@ def model_size():
 
 
 if __name__ == '__main__':
+    
+    #word_vocab, char_vocab, word_tensors, char_tensors, max_word_length = \
+        #load_data('data', 65, '+')
+    
+    #train_reader = DataReader(word_tensors['train'], char_tensors['train'],
+                              #20, 35)
+    
+    #generator = train_reader.iter()
+    #x, y = next(generator)
 
     with tf.Session() as sess:
 
